@@ -4,12 +4,9 @@
 
 **Tools:** Claude (Anthropic) was used to design and generate the initial implementation: backend modules, tests, frontend, and documentation.
 
-**How the output was verified**
-- Ran the full automated suites (`npm test` in both apps) and the type checker in both apps.
-- Mutation-checked the concurrency tests: temporarily disabled the lock (`runExclusive` just calls the task) and confirmed 6 tests fail, then restored it. Also removed the retry-coalescing check and confirmed a test fails. This caught one weak test (a concurrent-refund test that passed without the lock), which was replaced by a service-level race test using a repository that returns stale reads.
-- Exercised the real UI in a headless browser: submit, POS failure, duplicate, retry, invalid total, unknown-order lookup.
-- Called the compiled server with `curl` for the failure, retry and refund flows.
-
-**Understanding:** the author must be able to explain every module. Key files to know: `concurrency/KeyedLock.ts`, `services/OrderService.ts`, `pos/SimulatedPos.ts`, `domain/paymentEvent.ts`.
-
-**Things the author should double-check personally:** the coalescing logic in `OrderService.syncOrder`, and the HTTP status choices (201/200/502/409) listed in the README.
+1. Used GPT to generate  a system design to get a rough idea. Submitted the problem statement to it and asked it to anticiapte what could go 
+wrong while building this app in general and the problems that could arise while using AI.
+2. Created the prompt by myself (provided strict rules but also included some language constructs like "as far as possible", "Maybe" to give the model some flexibility - this can be perceived as a regularization technique at a prompt level) and asked ChatGPT to give a verdict on my engineering judgement - got a go ahead.
+3. No coding harness like codex or claude cli was used during the development as the scope of the application is not too huge but rather conceptual.
+4. Used Claude (Anthropic) - Sonnet 5.5 to generate the code.
+5. Used Gemini to get quick information of some coding constructs.

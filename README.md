@@ -122,4 +122,4 @@ Small commits per layer (domain -> POS -> service/API -> tests -> frontend -> do
 
 ## Time spent and unfinished work
 
-Approximate time: **[fill in, e.g. ~4h]**. Unfinished: see "Scoped out" above; nothing in the required scope is knowingly incomplete.
+Approximate time: 4.5 to 5 hours.
