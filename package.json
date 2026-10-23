@@ -1,0 +1,12 @@
+{
+  "name": "skippio-challenge",
+  "private": true,
+  "description": "Convenience scripts. Backend and frontend are independent apps with their own lockfiles.",
+  "scripts": {
+    "install:all": "npm --prefix backend ci && npm --prefix frontend ci",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "test": "npm --prefix backend test && npm --prefix frontend test",
+    "typecheck": "npm --prefix backend run typecheck && npm --prefix frontend run typecheck"
+  }
+}
